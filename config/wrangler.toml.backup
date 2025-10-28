@@ -1,0 +1,46 @@
+name = "gpin-agent-gateway"
+main = "src/index.ts"
+compatibility_date = "2025-10-27"
+compatibility_flags = ["nodejs_compat"]
+
+account_id = "7bd26eea67dabcd4b0bc5e2468691cd4"
+workers_dev = true
+
+[vars]
+# --- Core Config ---
+BASE_URL = "https://gpin-agent-gateway.steep-band-be51.workers.dev"
+APPROVAL_MODE = "manual"                # or "auto" if you want automatic updates
+NOTION_VERSION = "2022-06-28"
+
+# --- Secrets / Tokens ---
+OPENAI_API_KEY = "sk-..."               # keep yours
+NOTION_SECRET = "secret_..."            # keep yours
+NOTION_DB_ID = "..."                    # keep yours
+PINATA_JWT = "..."                      # keep yours
+ENS_RPC_URL = "https://rpc.ankr.com/eth"
+
+# Optional integrations for reverse sync:
+# WEB3_STORAGE_TOKEN = "..."
+# SLACK_WEBHOOK_URL = "..."
+# EMAIL_WEBHOOK_URL = "..."
+
+[observability]
+  [observability.logs]
+  enabled = true
+  head_sampling_rate = 1
+  invocation_logs = true
+  persist = true
+
+# --- Storage Bindings ---
+[[kv_namespaces]]
+binding = "EVENTS_KV"
+id = "48ec6681eb0445febd732ba4433c69aa"     # replace after running wrangler commands below
+
+[[kv_namespaces]]
+binding = "OUTBOX_KV"
+id = "bf81aa01eb634078b1edeb49d2eb9127"     # replace after running wrangler commands below
+
+[[d1_databases]]
+binding = "AUDIT_D1"
+database_name = "gpin_audit"
+database_id = "66ba400c-a2dc-41ad-ba4d-2ec5e8b828bf"   # replace after running wrangler commands below

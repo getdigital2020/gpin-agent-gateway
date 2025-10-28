@@ -1,1 +1,3 @@
 node_modules\n.env\n/dist\n
+.dev.vars
+config/.dev.vars.backup
